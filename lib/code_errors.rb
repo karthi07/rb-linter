@@ -9,7 +9,7 @@ class LintErrors
 
   def show_errors
     @errors.each do |index,error|
-      puts "Line #{index + 1}: #{error}"
+      puts "Line #{index + 1}: #{error.join(", ")}"
     end
   end
 

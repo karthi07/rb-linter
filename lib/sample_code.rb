@@ -1,13 +1,19 @@
 def print_hello
-  
-  
-puts 'hello people '; 
+  attr_reader :test
+	#this reads the test
+h = 'hello! '
+puts 'hello people '
 end;
+! hello
+!hello
 
 
 i = 10; i -= 1; i = 43; 
-puts 'Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! '; 
+puts 'Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! ' 
 
 
   
-	print_hello 
+print_hello
+private
+;
+hello
