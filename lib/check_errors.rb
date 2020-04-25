@@ -4,7 +4,6 @@ class CheckErrors < CodeFile
 
   def initialize(filepath)
     super(filepath)
-    @errors = {}
   end
 
   def check_line_errors
@@ -39,18 +38,9 @@ class CheckErrors < CodeFile
     end
   end
 
-  def add_error(index, error_str)
-    @errors[index] == nil ? @errors[index] = [error_str] : @errors[index].append(error_str)
-  end
-
-  def show_errors
-    @errors.each do |index,error|
-      puts "Line #{index + 1}: #{error}"
-    end
-  end
 end
 
 #code1 = CodeFile.new()
 errors = CheckErrors.new('sample_code.rb')
-errors.check_line_errors()
+errors.check_line_errors
 errors.show_errors

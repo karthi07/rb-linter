@@ -1,13 +1,15 @@
 require 'strscan'
 require 'os'
+require_relative('code_errors')
 
-class CodeFile
+class CodeFile < LintErrors
   attr_reader :lines
 
   def initialize(filepath)
     @lines = []
     @file = File.open(filepath) if File.extname(filepath) == '.rb'
     @lines = @file.readlines.map(&:chomp)
+    super()
     #File.foreach(filepath) { |line| @lines.append(line.split) } 
   end
 
