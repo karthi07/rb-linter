@@ -14,15 +14,15 @@ class CheckErrors < CodeFile
       len = (line).length
       add_error(index,"Statement should not end with ;") if line.strip[-1] == ';'
       add_error(index,"Limit lines to 80 characters. ") if len >= 80
+      add_error(index,"Trailing white spaces ") if (line[-1] == ' ' || (line[-1] == ' ' && line.strip == ''))
       #check extra new lines
-      line = line.strip
-      nl_index = index if line == '' && nl_index == -1
+      
+      nl_index = index if line.strip == '' && nl_index == -1
       if nl_index != -1 && index > nl_index
-        line == '' ? add_error(index,"Extra line breaks") : nl_index = -1
+        line.strip == '' ? add_error(index,"Extra line breaks") : nl_index = -1
       end
       s = StringScanner.new(line)
       add_error(index,"Dont ues hard tab (use spaces instead)") if s.exist? /\t/
-      add_error(index,"Trailing white spaces ") if line[-1] == ' ' || (line[-1] == ' ' && line.strip == '')
 
     end
   end
