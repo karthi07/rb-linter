@@ -2,7 +2,7 @@ def print_hello
   attr_reader :test
 	#this reads the test
 h = 'hello! '
-puts 'hello people '
+puts "hello people	public  "
 end;
 ! hello
 !hello
