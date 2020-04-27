@@ -71,6 +71,53 @@ class CheckErrors < CodeFile
     add_error(index,"Dont use tab for spacing (use spaces instead)") if res
   end
 
+  def check_error_braces_order(string_pos, index)
+    return nil if @line.strip == ''
+    line = @line
+    line = remove_strings_from_line(string_pos) if string_pos.length != 0
+    stack = []
+    # Traversing the Expression  
+    i= 0
+    #for char in expr
+    error_text = nil
+    while i < line.length
+      char = line[i]
+      if ['(', '{', '['].include? char
+        # Push the element in the stack  
+        stack.append(char) 
+      elsif [')', '}', ']'].include? char
+        if stack.length == 0
+          error_text = "Paranthesis in the Expression is not balanced"
+          break
+        end
+        current_char = stack.pop() 
+        case
+        when current_char == '('
+          if char != ")"
+            error_text = "Missing closing braces ')'"
+            break
+          end
+        when current_char == '{'
+          if char != '}'
+            error_text = "Missing closing braces '}'"
+            break
+          end
+        when current_char == '['
+          if char != "]"
+            error_text = "Missing closing braces ']'"
+            break
+          end
+        end
+      end
+      i += 1
+    end
+    # Check Empty Stack 
+    
+    error_text = "Paranthesis in the Expression is not balanced" if stack.length != 0 && !error_text
+    add_error(index, error_text) if error_text
+  end
+
+
   def check_line_errors
     lines = @lines
     nl_index = -1
@@ -99,7 +146,19 @@ class CheckErrors < CodeFile
 
       check_error_space_for_braces(string_pos, index)
 
+      check_error_braces_order(string_pos,index)
+
     end
+  end
+
+  def remove_strings_from_line(string_pos)
+    i = 0
+    line = @line
+    while i < string_pos.length do
+      line = line.gsub(@line[string_pos[i]..string_pos[i+1]], "")
+      i += 2
+    end
+    line
   end
 
   def check_range(string_pos, ind)
@@ -114,9 +173,3 @@ class CheckErrors < CodeFile
   end
 
 end
-
-#code1 = CodeFile.new()
-errors = CheckErrors.new('sample_code.rb')
-errors.check_line_errors
-errors.show_errors
-#errors.check_range([5,10,21, 42, 49, 54],nil)

@@ -37,5 +37,4 @@ class CodeFile < LintErrors
   end
 end
 
-code1 = CodeFile.new('sample_code.rb')
 #p code1.get_file_encoding # need  to cheeck the charset types

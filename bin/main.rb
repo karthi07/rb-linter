@@ -1,3 +1,7 @@
 #!/usr/bin/env ruby
 
-puts "hello"
+require('./lib/check_errors')
+
+errors = CheckErrors.new('./lib/sample_code.rb')
+errors.check_line_errors
+errors.show_errors

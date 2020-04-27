@@ -1,11 +1,15 @@
-def add_pos( pos )
-  # chk the pos range here 
-  pos1 = pos - 1
-  ind1 = pos1 / 3 + pos1 / 3 +1
-  ind2 = pos1 % 3 + pos1 % 3 + 1
-  # gameboard[ind1][ind2] = sym
-  puts ("#{ind1} , #{ ind2}")
+k = "hello 'world' good 'world' gm"
+
+string_pos = k.gsub(/\'/).map { Regexp.last_match.begin(0)}
+line = k
+start = 0
+i = 0
+while i < string_pos.length do
+  line = line.gsub(k[string_pos[i]..string_pos[i+1]], "")
+  i += 2
 end
-k = [ 1,2,3 ]
-k = 1...10
-k.each { |i| add_pos(i)}
+
+
+
+puts string_pos,k
+puts line
