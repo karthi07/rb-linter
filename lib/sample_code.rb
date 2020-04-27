@@ -5,15 +5,15 @@ h = 'hello! '
 puts "hello people	public  "
 end;
 ! hello
-!hello
+!hello  
 
 
 i = 10; i -= 1; i = 43; 
 puts 'Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! ' 
 
-
+k= [1,3, 5,12 ]
   
-print_hello
+print_hello( test)
 private
 ;
 hello
