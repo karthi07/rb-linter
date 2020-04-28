@@ -151,10 +151,6 @@ class CheckErrors < CodeFile
 
       check_error_braces_order(string_pos,index)
     end
-
-    #check if final line is newline
-    add_error(lines.length-1, 0, "Final line of document should be new line") if @lines[lines.length-1] != ''
-
   end
 
   def remove_strings_from_line(string_pos)
