@@ -1,6 +1,6 @@
 # RB-Linter - Linter for Ruby code
 
-Ruby Linter. This provides feedback about errors and warning in code. As Linter this checks for the Logic and Syntax Errors in the code. The Style Configurations are derived from [Ruby Sytle Guide](https://rubystyle.guide/)
+RB-Linter is Ruby code Linter created using Ruby. This provides feedback about errors and warning in code. As Linter this checks for the Logic and Syntax Errors in the code. The Style Configurations are derived from [Ruby Sytle Guide](https://rubystyle.guide/)
 
 ### How to Run the Linter
 
