@@ -13,7 +13,7 @@ class CheckErrors < CodeFile
     line = @line
     line = remove_strings_from_line(string_pos) if string_pos.length != 0
     if ac_index != -1 && @line.strip != '' && (index == ac_index + 1)
-      add_error(index-1,"Use empty lines after access modifiers")
+      add_error(index-1,0,"Use empty lines after access modifiers")
       ac_index = -1
     end
 
@@ -29,7 +29,7 @@ class CheckErrors < CodeFile
   def check_error_extra_new_line(nl_index, index)
     nl_index = index if @line.strip == '' && nl_index == -1
     if nl_index != -1 && index > nl_index
-      @line.strip == '' ? add_error(index,'Avoid extra line breaks') : nl_index = -1
+      @line.strip == '' ? add_error(index,0,'Avoid extra line breaks') : nl_index = -1
     end
     return nl_index
   end
@@ -40,7 +40,7 @@ class CheckErrors < CodeFile
     exclam_indexs = @line.gsub(/!/).map { Regexp.last_match.begin(0)}
     exclam_indexs.each do | ex_index |
       exclam_index = ex_index if check_range(string_pos,ex_index)
-      add_error(index,"No Space after Bang (!) at #{exclam_index+2}") if exclam_index && @line[exclam_index + 1] == ' '
+      add_error(index, 1, "No Space after Bang (!) at #{exclam_index+2}") if exclam_index && @line[exclam_index + 1] == ' '
     end
   end
 
@@ -50,14 +50,14 @@ class CheckErrors < CodeFile
     braces_indexs += @line.gsub(/\[/).map { Regexp.last_match.begin(0)}
     braces_indexs.each do | ex_index |
       braces_index = ex_index if check_range(string_pos,ex_index)
-      add_error(index,"No Space after opening braces at #{braces_index+2}") if braces_index && @line[braces_index + 1] == ' '
+      add_error(index, 0, "No Space after opening braces at #{braces_index+2}") if braces_index && @line[braces_index + 1] == ' '
     end
 
     braces_indexs = @line.gsub(/\)/).map { Regexp.last_match.begin(0)}
     braces_indexs += @line.gsub(/\]/).map { Regexp.last_match.begin(0)}
     braces_indexs.each do | ex_index |
       braces_index = ex_index if check_range(string_pos,ex_index)
-      add_error(index,"No Space before closing braces at #{braces_index-1}") if braces_index && @line[braces_index - 1] == ' '
+      add_error(index, 0, "No Space before closing braces at #{braces_index-1}") if braces_index && @line[braces_index - 1] == ' '
     end
 
   end
@@ -71,7 +71,7 @@ class CheckErrors < CodeFile
         break
       end
     end
-    add_error(index,"Dont use tab for spacing (use spaces instead)") if res
+    add_error(index, 0, "Dont use tab for spacing (use spaces instead)") if res
   end
 
   def check_error_braces_order(string_pos, index)
@@ -117,7 +117,7 @@ class CheckErrors < CodeFile
     # Check Empty Stack 
     
     error_text = "Paranthesis in the Expression is not balanced" if stack.length != 0 && !error_text
-    add_error(index, error_text) if error_text
+    add_error(index, 1, error_text) if error_text
   end
 
 
@@ -128,12 +128,11 @@ class CheckErrors < CodeFile
     lines.each_with_index do |line,index|
       @line = line
       len = (@line).length
-      add_error(index,"Statement should not end with ;") if @line.strip[-1] == ';'
-      add_error(index,"Limit lines to 80 characters (use '/' to extend line)") if len >= 80
+      add_error(index, 0, "Statement should not end with ;") if @line.strip[-1] == ';'
+      add_error(index, 0, "Limit lines to 80 characters (use '/' to extend line)") if len >= 80
       
       #check trailing white spaces
-      add_error(index,"Trailing white spaces") if (@line[-1] == ' ' || (@line[-1] == ' ' && @line.strip == ''))
-      
+      add_error(index, 0, "Trailing white spaces") if (@line[-1] == ' ' || (@line[-1] == ' ' && @line.strip == ''))      
 
       #check extra new @lines
       nl_index = check_error_extra_new_line(nl_index,index)
@@ -152,6 +151,10 @@ class CheckErrors < CodeFile
 
       check_error_braces_order(string_pos,index)
     end
+
+    #check if final line is newline
+    add_error(lines.length-1, 0, "Final line of document should be new line") if @lines[lines.length-1] != ''
+
   end
 
   def remove_strings_from_line(string_pos)

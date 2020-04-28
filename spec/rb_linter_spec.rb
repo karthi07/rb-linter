@@ -85,4 +85,24 @@ describe CheckErrors do
     end
   end
 
+  describe '#check_error_braces_order(string_pos, index)' do
+    it "Adds Error object for Unbalanced Paranthesis Expression" do
+      test1.line = "func( helo"
+      index = 32; string_pos = []
+      test1.check_error_braces_order(string_pos, index)
+      expect(test1.errors[32]).to include("Paranthesis in the Expression is not balanced")
+    end
+    it "Adds Error object for Unbalanced Paranthesis Expression" do
+      test1.line = "func(helo{)"
+      index = 33; string_pos = []
+      test1.check_error_braces_order(string_pos, index)
+      expect(test1.errors[33]).to include("Missing closing braces '}'")
+    end
+    it "Should'nt add Error object for balanced Paranthesis Expression" do
+      test1.line = "func(helo{})"
+      index = 34; string_pos = []
+      test1.check_error_braces_order(string_pos, index)
+      expect(test1.errors[34]).to eql(nil)
+    end
+  end
 end
