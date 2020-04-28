@@ -26,4 +26,13 @@ describe CheckErrors do
       expect(test1.check_error_extra_new_line(-1, 12)).to eql(-1)
     end
   end
+
+  describe '#check_error_new_line_after_modifers(ac_index, index)' do
+    it "Adds Error object for no new line after modifer" do
+      test1.line = "  "
+      test1.check_error_extra_new_line(10, 11)
+      expect(test1.errors[11]).to eql(["Avoid extra line breaks"])
+    end
+  end
+
 end
