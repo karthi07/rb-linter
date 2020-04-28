@@ -3,6 +3,8 @@ AllCops:
     - "README.md"
     - "Guardfile"
     - "Rakefile"
+    - "sample_code/sample_code.rb"
+    - "sample_code/sample_code2.rb"
 
   DisplayCopNames: true
 
@@ -15,9 +17,8 @@ Metrics/AbcSize:
 Metrics/ClassLength:
   Max: 150
 Metrics/BlockLength:
-  ExcludedMethods: ['describe']
+  ExcludedMethods: ["describe"]
   Max: 30
-
 
 Style/Documentation:
   Enabled: false

@@ -44,7 +44,7 @@ class CheckErrors < CodeFile
   end
 
   def check_error_space_for_braces(string_pos, index) # rubocop:disable Metrics/CyclomaticComplexity
-    # check no space after !
+    # check for space after and before braces
     braces_indexs = @line.gsub(/\(/).map { Regexp.last_match.begin(0) }
     braces_indexs += @line.gsub(/\[/).map { Regexp.last_match.begin(0) }
     braces_indexs.each do |ex_index|
