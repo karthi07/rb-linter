@@ -5,6 +5,7 @@ Ruby Linter. This provides feedback about errors and warning in code. As Linter 
 ### How to Run the Linter
 
 - Fork/Clone this project to your local machine
+- Install dependencies by `bundle instal`
 - Run the Linter by `bin/main.rb file_to_check.rb` on command line.
 
 you can check mutliple files at once.
