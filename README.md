@@ -13,7 +13,7 @@ you can check mutliple files at once.
 
 ![screenshot](lib/ruby_linter.png)
 
-## Linter functionalities
+# Linter functionalities
 
 This is beginener level linter which monitors and reports limited style and logic issues. It can validate following logic / styles
 
@@ -54,17 +54,6 @@ Linter throws an error if there is space after bang/exclaimatory (!)
 
 Linter reports Two or More Empty Lines occuring continuously.
 
-### good
-
-some_method
-
-some_method
-
-### bad - It has two empty lines.
-
-some_method
-
-some_method
 
 ## check for space after and before braces
 
