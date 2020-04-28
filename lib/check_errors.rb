@@ -22,12 +22,6 @@ class CheckErrors < CodeFile
       if line =~ /#{ac}/
         ac_index = index
       end
-      # ac_indexs = @line.gsub(/#{ac}/).map { Regexp.last_match.begin(0)}
-      # ac_indexs.each do |ac_ind|
-      #   if check_range(string_pos,ac_ind)
-      #     ac_index = ac_ind
-      #   end
-      # end
     end
     return ac_index
   end
@@ -63,7 +57,7 @@ class CheckErrors < CodeFile
     braces_indexs += @line.gsub(/\]/).map { Regexp.last_match.begin(0)}
     braces_indexs.each do | ex_index |
       braces_index = ex_index if check_range(string_pos,ex_index)
-      add_error(index,"No Space before closing braces at #{braces_index-2}") if braces_index && @line[braces_index - 1] == ' '
+      add_error(index,"No Space before closing braces at #{braces_index-1}") if braces_index && @line[braces_index - 1] == ' '
     end
 
   end
