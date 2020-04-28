@@ -77,7 +77,7 @@ var = [ 1, 2, 3 ]
 - Limit lines to 80 characters (use '/' to extend line)
 - Extra Trailing white spaces
 
-### As a professional Linter this also exclude the string text while checking for the style and logic errors. The Linter designed and developed with considering running time and space complexity as one of main aspect. the code file is alomst processed single scan ~ O(n+k).
+### As a professional Linter, this also excludes the string text while checking for the style and logic errors. The Linter designed and developed with considering running time and space complexity as one of main aspects. the code file is almost processed single scan ~ O(n+k).
 
 ## Built With
 
