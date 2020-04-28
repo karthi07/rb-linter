@@ -76,7 +76,7 @@ class CheckErrors < CodeFile
     add_error(index, 0, 'Dont use tab for spacing (use spaces instead)') if res
   end
 
-  def check_error_braces_order(string_pos, index) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity, Metrics/LineLength
+  def check_error_braces_order(string_pos, index) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
     return nil if @line.strip == ''
 
     line = @line
