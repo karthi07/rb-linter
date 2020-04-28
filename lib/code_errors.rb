@@ -1,4 +1,6 @@
 class LintErrors
+  attr_reader :errors
+  
   def initialize
     @errors = {}
   end

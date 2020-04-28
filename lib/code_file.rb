@@ -1,4 +1,3 @@
-require 'strscan'
 require 'os'
 require_relative('code_errors')
 
@@ -10,11 +9,9 @@ class CodeFile < LintErrors
     @file = File.open(filepath) if File.extname(filepath) == '.rb'
     @lines = @file.readlines.map(&:chomp)
     super()
-    #File.foreach(filepath) { |line| @lines.append(line.split) } 
   end
 
   def print_lines
-    # @lines.each {|line| puts line }
     print @lines
   end
 
@@ -26,13 +23,6 @@ class CodeFile < LintErrors
       `file -i #{file_path}`.strip.split('charset=').last
     else
       nil
-    end
-  end
-
-  def scanner
-    @lines.each do |line|
-      s = StringScanner.new(line)
-      puts s.scan(/\w+/)
     end
   end
 end

@@ -1,6 +1,7 @@
 require_relative('code_file')
 
 class CheckErrors < CodeFile
+  attr_accessor :line
 
   def initialize(filepath)
     super(filepath)
@@ -23,10 +24,10 @@ class CheckErrors < CodeFile
   end
 
   def check_error_extra_new_line(nl_index, index)
-    #check extra new @lines
+    puts "line : #{@line}"
     nl_index = index if @line.strip == '' && nl_index == -1
     if nl_index != -1 && index > nl_index
-      @line.strip == '' ? add_error(index,"Avoid extra line breaks") : nl_index = -1
+      @line.strip == '' ? add_error(index,'Avoid extra line breaks') : nl_index = -1
     end
     return nl_index
   end
@@ -171,5 +172,4 @@ class CheckErrors < CodeFile
     end
     res
   end
-
 end
