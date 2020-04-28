@@ -8,7 +8,7 @@ end;
 !hello  
 
 puts (" test (()") [
-puts (" test (()",())
+puts (" test (()")
 i = 10; i -= 1; i = 43; 
 puts 'Hello world! Hello world! Hello world! ' 
 
