@@ -2,11 +2,18 @@
 
 require('./lib/check_errors')
 
+private
+
 def run_linter(filepath)
   puts "\n \n   Ruby Linter Results for #{filepath} \n \n"
   errors = CheckErrors.new(filepath)
   errors.check_line_errors
   errors.show_errors
+end
+
+if ARGV.length.zero?
+  puts "No Ruby file provied in argument! Re run the linter with target \
+ruby file as commandline argument. \n`bin/main.rb lib/sample_code.rb` "
 end
 
 ARGV.each do |arg|

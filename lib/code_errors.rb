@@ -16,6 +16,8 @@ class LintErrors
   end
 
   def show_errors
+    puts 'No Errors Found. ' unless @error
+
     @errors.each do |index, error|
       error.each do |er|
         puts "Line #{index + 1}:" + ' warning : '.colorize(:light_yellow) + " #{er[1]}" if er[0].zero?

@@ -9,7 +9,7 @@ describe CheckErrors do
     it 'Adds Error object for Extra new line error' do
       test1.line = empty_line
       test1.check_error_extra_new_line(10, 11)
-      expect(test1.errors[11]).to include('Avoid extra line breaks')
+      expect(test1.errors[11]).to include([0, 'Avoid extra line breaks'])
     end
 
     it ' Dont add Error object for valid line' do
@@ -42,7 +42,7 @@ describe CheckErrors do
       index = 15
       string_pos = []
       test1.check_error_new_line_after_modifers(string_pos, ac_index, index)
-      expect(test1.errors[14]).to include('Use empty lines after access modifiers')
+      expect(test1.errors[14]).to include([0, 'Use empty lines after access modifiers'])
     end
 
     it 'Shoudnot add Error object for new line after access modifer' do
@@ -70,7 +70,7 @@ describe CheckErrors do
       index = 25
       string_pos = []
       test1.check_error_space_after_exclaim(string_pos, index)
-      expect(test1.errors[25]).to include('No Space after Bang (!) at 2')
+      expect(test1.errors[25]).to include([1, 'No Space after Bang (!) at 2'])
     end
     it "Should'nt Error object for space after Exclaim (!)" do
       test1.line = '!hello'
@@ -87,14 +87,14 @@ describe CheckErrors do
       index = 30
       string_pos = []
       test1.check_error_space_for_braces(string_pos, index)
-      expect(test1.errors[30]).to include('No Space after opening braces at 6')
+      expect(test1.errors[30]).to include([0, 'No Space after opening braces at 6'])
     end
     it 'Adds Error object for No spaces after, before Braces' do
       test1.line = 'func(helo )'
       index = 30
       string_pos = []
       test1.check_error_space_for_braces(string_pos, index)
-      expect(test1.errors[30]).to include('No Space before closing braces at 9')
+      expect(test1.errors[30]).to include([0, 'No Space before closing braces at 9'])
     end
   end
 
@@ -104,14 +104,14 @@ describe CheckErrors do
       index = 32
       string_pos = []
       test1.check_error_braces_order(string_pos, index)
-      expect(test1.errors[32]).to include('Paranthesis in the Expression is not balanced')
+      expect(test1.errors[32]).to include([1, 'Paranthesis in the Expression is not balanced'])
     end
     it 'Adds Error object for Unbalanced Paranthesis Expression' do
       test1.line = 'func(helo{)'
       index = 33
       string_pos = []
       test1.check_error_braces_order(string_pos, index)
-      expect(test1.errors[33]).to include("Missing closing braces '}'")
+      expect(test1.errors[33]).to include([1, "Missing closing braces '}'"])
     end
     it "Should'nt add Error object for balanced Paranthesis Expression" do
       test1.line = 'func(helo{})'
